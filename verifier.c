@@ -87,3 +87,15 @@ void matrix_sol_write_inacc(int num_rows, int num_nonzero, int * index_rows, int
     }
    fclose(fp);
 }
+
+void write_sol(long double * sol, int length){
+   int i;
+   FILE *fp;
+   fp = fopen("sol.csv", "w");
+   if(fp == NULL) exit(1);
+   fprintf(fp, "Row, Sol\n");
+   for(i = 0; i < length; i++){
+       if(sol[i] != 0) fprintf(fp, "%d, %Le\n", i + 1, sol[i]);
+   }
+   fclose(fp);
+}
