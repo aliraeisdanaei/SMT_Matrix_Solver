@@ -7,6 +7,7 @@
 
 #include "MatrixMarket/mmio.h"
 #include "MatrixMarket/matrix.h"
+#include "MatrixMarket/read_mtx.h"
 
 #define ACCEPTABLE_DIFF 0.005
 

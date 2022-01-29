@@ -3,9 +3,9 @@
 #include <stdbool.h> 
 #include <string.h>
 
-#include "MatrixMarket/read_mtx.h"
 #include "MatrixMarket/mmio.h"
 #include "MatrixMarket/matrix.h"
+#include "MatrixMarket/read_mtx.h"
 
 /*
 * Lower triangular solver val=b
@@ -18,8 +18,8 @@
 * In/Out:
 * b_solution : the right hand-side b at start and the solution x at the end.
 */
-int lsolve (int matrix_dimension, int* index_rows, int* index_cols, int * cols, long double* val, long double *b_solution){
-    if (!index_cols || !index_rows || !b_solution) return 0;
+int lsolve (int matrix_dimension, int* index_cols, int * cols, long double* val, long double *b_solution){
+    if (!index_cols || !b_solution) return 0;
 
     // Index of both the row and the col that is being solved during the iteration
     int i_matrix;
@@ -44,6 +44,6 @@ int lsolve (int matrix_dimension, int* index_rows, int* index_cols, int * cols, 
     return 1;
 }
 
-int lsolve_by_matrix (Matrix matrix, long double * b_vector){
-    return lsolve(matrix.num_cols, matrix.index_rows, matrix.index_cols, matrix.cols, matrix.val, b_vector);
+int lsolve_by_matrix (Matrix * matrix, long double * b_vector){
+    return lsolve(matrix->num_cols, matrix->index_cols, matrix->cols, matrix->val, b_vector);
 }

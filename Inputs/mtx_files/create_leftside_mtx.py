@@ -28,13 +28,13 @@ with open(filename, 'r') as file:
             elif(j <= i):
                 num_nonzero += 1
                 size_header = f"{matrix_dimension} {matrix_dimension} {num_nonzero}"
-                matrix.append([i, j, val])
+                matrix->append([i, j, val])
             first_line = False
 
 def get_row(elem):
     return elem[0]
 
-matrix.sort(key = get_row)
+matrix->sort(key = get_row)
 
 with open(output_filename, 'w') as file:
     file.write(header + '\n')
