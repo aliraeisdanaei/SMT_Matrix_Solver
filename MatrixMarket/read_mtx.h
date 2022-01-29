@@ -1,6 +1,8 @@
 #ifndef READ_MTX
 #define READ_MTX
 
+void free_matrix(Matrix * matrix);
+
 /**
  * Writes the matrix read in mtx format
  */

@@ -1,8 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "mmio.h"
+#include "../DynamicList/list.h"
 #include "matrix.h"
+#include "../DynamicList/dynamic_list.h"
+
+#define FIRST_SECTION_NUM_ROWS 1000
+
+void free_matrix(Matrix * matrix){
+    free(matrix->rows);
+    free(matrix->cols);
+    free(matrix->index_rows);
+    free(matrix->index_cols);
+    free(matrix->reach_first_section);
+    free(matrix->not_reach_first_section);
+    free(matrix->val);
+    free(matrix);
+}
 
 /**
  * Writes the matrix read in mtx format
@@ -36,7 +52,7 @@ long double * get_b_vector(Matrix * matrix){
     int i;
     for(i = 0; i < matrix->num_rows; b_vector[i++] = 0.0);
     for(i = 0; i < matrix->num_nonzero; i++) b_vector[matrix->rows[i]] = matrix->val[i];
-    free(matrix);
+    free_matrix(matrix);
     return b_vector;
 }
 
@@ -84,6 +100,8 @@ Matrix * read_mtx_file(int argc, char *argv[], int i_arg){
         exit(1);
     }
 
+    matrix->rows_in_first_section = FIRST_SECTION_NUM_ROWS < matrix->num_rows ? FIRST_SECTION_NUM_ROWS : 1;
+
     matrix->rows = (int *) malloc(matrix->num_nonzero * sizeof(int));
     matrix->cols = (int *) malloc(matrix->num_nonzero * sizeof(int));
     matrix->val = (long double *) malloc(matrix->num_nonzero * sizeof(long double));
@@ -91,10 +109,16 @@ Matrix * read_mtx_file(int argc, char *argv[], int i_arg){
     matrix->index_cols = (int *) malloc(matrix->num_cols * sizeof(int));
     matrix->index_rows = (int *) malloc(matrix->num_rows * sizeof(int));
 
+    unsigned int first_size_reach = matrix->num_nonzero * matrix->rows_in_first_section / matrix->num_rows;
+    matrix->reach_first_section = get_new_dynamic_list(first_size_reach);
+    matrix->not_reach_first_section = get_new_dynamic_list(first_size_reach);
+
     for(i = 0; i < matrix->num_rows; matrix->index_rows[i++] = -1);
     for(i = 0; i < matrix->num_cols; matrix->index_cols[i++] = -1);
 
-    int j = 0;
+
+    int crnt_row = -1;
+    bool first_sec_reaches_crnt_row = true;
     for (i = 0; i < matrix->num_nonzero; i++){
         fscanf(f, "%d %d %Le\n", &i_row, &i_col, &tmp_val);
 
@@ -103,14 +127,42 @@ Matrix * read_mtx_file(int argc, char *argv[], int i_arg){
         matrix->val[i] = tmp_val;
 
         if(matrix->index_rows[matrix->rows[i]] == -1){
+            //reached a new row
             matrix->index_rows[matrix->rows[i]] = i;
+
+            if(crnt_row > matrix->rows_in_first_section){
+                if(first_sec_reaches_crnt_row){
+                    //we have reached a new row and our last row was reachable by the first section
+                    insert_last_elem(matrix->reach_first_section, crnt_row - 1);
+                }else{
+                    insert_last_elem(matrix->not_reach_first_section, crnt_row - 1);
+                }
+            }
+            crnt_row = i_row;
+            first_sec_reaches_crnt_row = true;
         }
 
         if(matrix->index_cols[matrix->cols[i]] == -1){
+            //reached a new col
             matrix->index_cols[matrix->cols[i]] = i;
         }
+
+        // check if the row is stictyly reachable by the first section    
+        if(crnt_row > matrix->rows_in_first_section && first_sec_reaches_crnt_row){
+            if(i_col > matrix->rows_in_first_section){
+                // printf("i_col: %d i_row: %d\n", i_col, i_row);
+                if(i_col != i_row){
+                    //the row has a dependency of another col
+                    // printf("row %d is not strictly reachable by the first %d rows\n", i_row, matrix->rows_in_first_section);
+                    first_sec_reaches_crnt_row = false;
+                }
+            }
+        }
     }
-    matrix->num_nonzero -= j;
+    //still insert the last element if it was reachable
+    if(first_sec_reaches_crnt_row){
+        insert_last_elem(matrix->reach_first_section, crnt_row - 1);
+    }
 
     if (f !=stdin) fclose(f);
     return matrix;
@@ -125,4 +177,5 @@ void test_read_mtx(int argc, char *argv[]){
     Matrix * matrix = read_mtx_file(argc, argv, 1);
     write_out_mtx(matrix);
     write_out_indexes(matrix);
+    print_list(matrix->reach_first_section);
 }

@@ -8,12 +8,24 @@
 #define ALPHA_LOW 0.25
 #define ALPHA_HIGH 1
 
+void free_list(List * list){
+    free(list->arr);
+    free(list);
+}
+
 /**
- * Prints the list
+ * Prints the stats of the list
  */
-void print_list(List * list){
+void print_stats(List * list){
     printf("Size: %d\n", list->size);
     printf("Num Elem: %d\n", list->num_elem);
+}
+
+/**
+ * Prints the stats and the list
+ */
+void print_list(List * list){
+    print_stats(list);
     int i;
     for(i = 0; i < list->num_elem; i++){
         printf("[%d] = %d\n", i, list->arr[i]);
@@ -40,9 +52,10 @@ float get_alpha(List * list){
 
 /**
  * Return is a new initialised List pointer.
- * the arr size is made to the first_size given
+ * the arr size is made to the first_size given -- if the first size is smaller than 1 -- size will be 1
  */
 List * get_new_dynamic_list(unsigned int first_size){
+    if(first_size < 1) first_size = 1;
     int * arr = (int *) malloc(first_size * sizeof(int));
     List * list = (List *) malloc(sizeof(List));
     list->arr = arr;
@@ -57,7 +70,7 @@ List * get_new_dynamic_list(unsigned int first_size){
  * the list is reduced in size if the reduction brought the alpha to its lowbound
  */
 int remove_last_elem(List * list){
-    if(list->num_elem == 0) return INFINITY;
+    if(list->num_elem == 0) return (int) INFINITY;
     int removed_elem = list->arr[list->size - 1];
     list->num_elem--;
 

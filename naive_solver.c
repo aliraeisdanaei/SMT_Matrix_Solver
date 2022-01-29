@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "MatrixMarket/mmio.h"
+#include "DynamicList/list.h"
 #include "MatrixMarket/matrix.h"
 #include "MatrixMarket/read_mtx.h"
 

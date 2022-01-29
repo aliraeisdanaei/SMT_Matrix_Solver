@@ -1,8 +1,15 @@
 #ifndef DYNAMIC_LIST
 #define DYNAMIC_LIST
 
+void free_list(List * list);
+
 /**
- * Prints the list
+ * Prints the stats of the list
+ */
+void print_stats(List * list);
+
+/**
+ * Prints the stats and the list
  */
 void print_list(List * list);
 
@@ -13,7 +20,7 @@ float get_alpha(List * list);
 
 /**
  * Return is a new initialised List pointer.
- * the arr size is made to the first_size given
+ * the arr size is made to the first_size given -- if the first size is smaller than 1 -- size will be 1
  */
 List * get_new_dynamic_list(unsigned int first_size);
 
