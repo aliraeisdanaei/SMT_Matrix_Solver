@@ -1,5 +1,3 @@
-![equation](http://www.sciweavers.org/tex2img.php?eq=1%2Bsin%28mc%5E2%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
-
 # SMT Matrix Solver
 
 This coding project, a part of a university application, was designed to be completed in one week. 
@@ -7,9 +5,10 @@ This coding project, a part of a university application, was designed to be comp
 It involved the coding of solver of the lower triangle of a matrix.
 The solver was to be optimised for sparse matrices, and had to involve parallelism. 
 
-Here is an example of such a matrix. The solver is solving the $\vec{x}$ vector.
+Here is an example of such a matrix. The solver is solving the _x_ vector.
 
-$$
+![example_matrix](./example_matrix.png)
+<!-- $$
 \left(\begin{array}{cc} 
 1 & 0 & 0 & 0 \\
 0 & 3 & 0 & 0 \\
@@ -29,7 +28,7 @@ b2 \\
 b3 \\
 b4
 \end{array}\right)
-$$
+$$ -->
 
 Therefore, the solver comes in two kinds, a naive solver, that solves it with a direct single threaded approach, and a optimised approach, in which layering and parallelism is used.
 
@@ -80,7 +79,7 @@ The solver can also be run manually. **Note all input files must adhere to the s
 ```
 
 ## Verification
-The verification of the solver is simple. It multiplies each row with the computed solution matrix, $\vec{x}$, and tries to match with the original $\vec{b}$ vector. This equality is only acceptable within a threshold. Some accuracy may be lost during the computation. 
+The verification of the solver is simple. It multiplies each row with the computed solution matrix, _x_ vector, and tries to match with the original _b_ vector. This equality is only acceptable within a threshold. Some accuracy may be lost during the computation. 
 
 Two functions do verification: one stores the inaccuracies, and the other rejects the inaccuracy as invalid. 
 
@@ -88,7 +87,7 @@ Two functions do verification: one stores the inaccuracies, and the other reject
 
 __[Open Mp](https://www.openmp.org/)__ was used for the parallelisation. It was very tricky trying to come up with how this should be done. 
 
-These matrices have dependencies of rows. To solve row $n$, some rows $n' < n$ might have to be solved first. 
+These matrices have dependencies of rows. To solve row _n_, some rows _n' < n_ might have to be solved first. 
 
 The technique used here was to layer the rows. 
 
