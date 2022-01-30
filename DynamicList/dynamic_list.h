@@ -19,6 +19,16 @@ void print_list(List * list);
 float get_alpha(List * list);
 
 /**
+ * Return is truee iff the elem is in the list
+ */
+bool elem_in_list(List * list, int elem);
+
+/**
+ * Return is true iff elem is in any of the lists
+ */
+bool elem_in_list_of_lists(List ** lists, int num_lists, int elem);
+
+/**
  * Return is a new initialised List pointer.
  * the arr size is made to the first_size given -- if the first size is smaller than 1 -- size will be 1
  */

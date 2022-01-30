@@ -20,7 +20,7 @@
 *      double precision floating point numbers in scanf() and
 *      its variants.  For example, use "%Le", "%lg", or "%le"
 *      when reading doubles, otherwise errors will occur.
-*/
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -90,9 +90,9 @@ int main(int argc, char *argv[])
 
     if (f !=stdin) fclose(f);
 
-    /************************/
+    /*********************** */
     /* now write out matrix */
-    /************************/
+    /*********************** */
 
     mm_write_banner(stdout, matcode);
     mm_write_mtx_crd_size(stdout, M, N, nz);

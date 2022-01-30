@@ -60,6 +60,10 @@ bool matrix_sol_verifier(int num_rows, int num_nonzero, int * index_rows, int * 
     return true;
 }
 
+/** 
+ * Records all of the innaccuracies with between the b_vector and the values of rows multipled by the solution vector
+ * Equality is measuered with the ACCEPTABLE_DIFF
+ */
 void matrix_sol_write_inacc(int num_rows, int num_nonzero, int * index_rows, int * cols, long double * val, long double * sol, long double * b_vector){
     if (!num_rows || !index_rows || !val || !sol) return;
 
@@ -94,6 +98,9 @@ void matrix_sol_write_inacc(int num_rows, int num_nonzero, int * index_rows, int
    fclose(fp);
 }
 
+/** 
+ * Writes the sol to a csv file called sol.csv
+ */
 void write_sol(long double * sol, int length){
    int i;
    FILE *fp;

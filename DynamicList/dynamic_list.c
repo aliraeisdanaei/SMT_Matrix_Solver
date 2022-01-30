@@ -1,6 +1,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "list.h"
 
@@ -49,6 +50,33 @@ void copy_arr(int * dest, int * src, int length){
 float get_alpha(List * list){
     return ((float) list->num_elem) / ((float)list->size);
 }
+
+/**
+ * Return is truee iff the elem is in the list
+ */
+bool elem_in_list(List * list, int elem){
+    int i = 0;
+    for(i = 0; i < list->num_elem; i++){
+        if(list->arr[i] == elem){
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * Return is true iff elem is in any of the lists
+ */
+bool elem_in_list_of_lists(List ** lists, int num_lists, int elem){
+    int i = 0;
+    for(i = 0; i < num_lists; i++){
+        if(elem_in_list(lists[i], elem)){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 /**
  * Return is a new initialised List pointer.

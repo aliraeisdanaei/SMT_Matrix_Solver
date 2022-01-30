@@ -4,7 +4,7 @@
 *   See http://math.nist.gov/MatrixMarket for details.
 *
 *
-*/
+ */
 
 
 #include <stdio.h>
@@ -257,11 +257,11 @@ int mm_write_mtx_array_size(FILE *f, int M, int N)
 
 
 
-/*-------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------- */
 
-/******************************************************************/
+/***************************************************************** */
 /* use when I[], J[], and val[]J, and val[] are already allocated */
-/******************************************************************/
+/***************************************************************** */
 
 int mm_read_mtx_crd_data(FILE *f, int M, int N, int nz, int I[], int J[],
         long double val[], MM_typecode matcode)
@@ -329,7 +329,7 @@ int mm_read_mtx_crd_entry(FILE *f, int *I, int *J,
 
                         if matrix is complex, values[] is of size 2*nz,
                             (nz pairs of real/imaginary values)
-************************************************************************/
+*********************************************************************** */
 
 int mm_read_mtx_crd(char *fname, int *M, int *N, int *nz, int **I, int **J, 
         long double **val, MM_typecode *matcode)
@@ -445,7 +445,7 @@ int mm_write_mtx_crd(char fname[], int M, int N, int nz, int I[], int J[],
 *  Create a new copy of a string s.  mm_strdup() is a common routine, but
 *  not part of ANSI C, so it is included here.  Used by mm_typecode_to_str().
 *
-*/
+ */
 char *mm_strdup(const char *s)
 {
 	int len = strlen(s);

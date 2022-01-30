@@ -4,7 +4,7 @@
 *   See http://math.nist.gov/MatrixMarket for details.
 *
 *
-*/
+ */
 
 #ifndef MM_IO_H
 #define MM_IO_H
@@ -26,7 +26,7 @@ int mm_write_mtx_crd_size(FILE *f, int M, int N, int nz);
 int mm_write_mtx_array_size(FILE *f, int M, int N);
 
 
-/********************* MM_typecode query fucntions ***************************/
+/********************* MM_typecode query fucntions ************************** */
 
 #define mm_is_matrix(typecode)	((typecode)[0]=='M')
 
@@ -48,7 +48,7 @@ int mm_write_mtx_array_size(FILE *f, int M, int N);
 int mm_is_valid(MM_typecode matcode);		/* too complex for a macro */
 
 
-/********************* MM_typecode modify fucntions ***************************/
+/********************* MM_typecode modify fucntions ************************** */
 
 #define mm_set_matrix(typecode)	((*typecode)[0]='M')
 #define mm_set_coordinate(typecode)	((*typecode)[1]='C')
@@ -73,7 +73,7 @@ int mm_is_valid(MM_typecode matcode);		/* too complex for a macro */
 #define mm_initialize_typecode(typecode) mm_clear_typecode(typecode)
 
 
-/********************* Matrix Market error codes ***************************/
+/********************* Matrix Market error codes ************************** */
 
 
 #define MM_COULD_NOT_READ_FILE	11
@@ -99,7 +99,7 @@ int mm_is_valid(MM_typecode matcode);		/* too complex for a macro */
 											P(attern)   S(ymmetric)
 								    		I(nteger)	K(kew)
 
- ***********************************************************************/
+ ********************************************************************** */
 
 #define MM_MTX_STR		"matrix"
 #define MM_ARRAY_STR	"array"

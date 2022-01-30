@@ -6,7 +6,7 @@
 *
 *   (See http://math.nist.gov/MatrixMarket for details.)
 *
-*/
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
