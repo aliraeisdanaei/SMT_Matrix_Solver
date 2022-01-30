@@ -1,4 +1,5 @@
 Row, Sol
+<<<<<<< HEAD
 169, 4.382432e-03
 170, 9.572420e-04
 171, 2.097233e-04
@@ -323,3 +324,9 @@ Row, Sol
 10723, -3.735904e-32
 10724, -7.842696e-33
 10725, -1.694757e-33
+=======
+169, -2.627576e-01
+847, -1.929530e+00
+1695, 1.080313e+00
+10685, 2.920100e+00
+>>>>>>> f3694d8 (Finished with the project to a satisfactory level. Added a report/documentation. Added full layering feature for the optimised version. Including most of the input files in this commit as well.)

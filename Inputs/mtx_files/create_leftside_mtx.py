@@ -28,13 +28,21 @@ with open(filename, 'r') as file:
             elif(j <= i):
                 num_nonzero += 1
                 size_header = f"{matrix_dimension} {matrix_dimension} {num_nonzero}"
+<<<<<<< HEAD
                 matrix->append([i, j, val])
+=======
+                matrix.append([i, j, val])
+>>>>>>> f3694d8 (Finished with the project to a satisfactory level. Added a report/documentation. Added full layering feature for the optimised version. Including most of the input files in this commit as well.)
             first_line = False
 
 def get_row(elem):
     return elem[0]
 
+<<<<<<< HEAD
 matrix->sort(key = get_row)
+=======
+matrix.sort(key = get_row)
+>>>>>>> f3694d8 (Finished with the project to a satisfactory level. Added a report/documentation. Added full layering feature for the optimised version. Including most of the input files in this commit as well.)
 
 with open(output_filename, 'w') as file:
     file.write(header + '\n')

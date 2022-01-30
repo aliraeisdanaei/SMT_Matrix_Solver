@@ -9,6 +9,7 @@
 #include "MatrixMarket/read_mtx.h"
 
 /*
+<<<<<<< HEAD
 * Lower triangular solver val=b
 * L is stored in the compressed column storage format
 * Inputs are:
@@ -19,6 +20,17 @@
 * In/Out:
 * b_solution : the right hand-side b at start and the solution x at the end.
 */
+=======
+ * Lower triangular solver val=b -- single thread
+ * Matrix is stored in the compressed column storage format
+ * matrix_dimension: the matrix dimension
+ * index_cols: the column pointer of L
+ * index_rows: the row index of L
+ * val: the values of L
+ * In/Out:
+ * b_solution : the right hand-side b at start and the solution x at the end.
+ */
+>>>>>>> f3694d8 (Finished with the project to a satisfactory level. Added a report/documentation. Added full layering feature for the optimised version. Including most of the input files in this commit as well.)
 int lsolve (int matrix_dimension, int* index_cols, int * cols, long double* val, long double *b_solution){
     if (!index_cols || !b_solution) return 0;
 
@@ -45,6 +57,12 @@ int lsolve (int matrix_dimension, int* index_cols, int * cols, long double* val,
     return 1;
 }
 
+<<<<<<< HEAD
+=======
+/**
+ * Return is lsolve, but called with the convenience of the matrix struct
+ */
+>>>>>>> f3694d8 (Finished with the project to a satisfactory level. Added a report/documentation. Added full layering feature for the optimised version. Including most of the input files in this commit as well.)
 int lsolve_by_matrix (Matrix * matrix, long double * b_vector){
     return lsolve(matrix->num_cols, matrix->index_cols, matrix->cols, matrix->val, b_vector);
 }

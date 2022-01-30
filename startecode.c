@@ -8,7 +8,11 @@
 * Lx : the values of L
 * In/Out:
 * x : the right hand-side b at start and the solution x at the end.
+<<<<<<< HEAD
 */
+=======
+ */
+>>>>>>> f3694d8 (Finished with the project to a satisfactory level. Added a report/documentation. Added full layering feature for the optimised version. Including most of the input files in this commit as well.)
 int lsolve (int n, int* Lp, int* Li, double* Lx, double *x){
     int p, j;
     if (!Lp || !Li || !x) return (0);
@@ -41,7 +45,11 @@ int lsolve (int n, int* Lp, int* Li, double* Lx, double *x){
 * x : is a dense vector
 * Output:
 * y : is a dense vector that stores the result of multiplication
+<<<<<<< HEAD
 */
+=======
+ */
+>>>>>>> f3694d8 (Finished with the project to a satisfactory level. Added a report/documentation. Added full layering feature for the optimised version. Including most of the input files in this commit as well.)
 int spmv_csc (int n, int size_t, int *Ap, int *Ai, double *Ax, double *x, double *y)
 {
     int p, j;
