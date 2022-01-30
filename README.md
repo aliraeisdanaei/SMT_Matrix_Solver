@@ -220,5 +220,5 @@ There are sections of the code that can be refactored for a better design. Many 
 <br> <br> <br>
 
 ## The Moment
-In loving memory of my grandfather who died during the week that I was working on this project. I have named this project after him (**S**eyed **M**ojtaba **T**abatabaei Matrix Solver). Please pray for him. 
+In loving memory of my grandfather, who died during the week that I was working on this project, I have named this project after him (**S**eyed **M**ojtaba **T**abatabaei Matrix Solver). Please pray for him. 
 
