@@ -126,7 +126,7 @@ Inaccuracies recorded in inaccuracies.csv
 
 The optimised solvers also output the information about the layers.
 ```
-make run_opt_1
+> make run_opt_1
 ./solver.o opt Inputs/mtx_files/torso1_leftside.mtx  Inputs/mtx_files/b_for_torso1.mtx
 Num first section: 10000 ---------------------------
 Layer 1---------------
