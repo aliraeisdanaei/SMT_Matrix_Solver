@@ -14,12 +14,12 @@ void print_mtx(Matrix * matrix);
 /**
  * Prints the statistics of the lists associated with the matrix
  */
-void print_mtx_reach_stats(Matrix * matrix);
+// void print_mtx_reach_stats(Matrix * matrix);
 
 /**
  * Prints the full report of the lists associated with the matrix
  */
-void print_mtx_reach_stats(Matrix * matrix);
+// void print_mtx_reach_stats(Matrix * matrix);
 
 /**
  * Write out the row and col indexes

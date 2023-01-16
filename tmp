@@ -1,0 +1,1 @@
+gcc -fopenmp  -o solver.o naive_solver.c optimised_solver.c main.c MatrixMarket/read_mtx.c MatrixMarket/mmio.c verifier.c DynamicList/dynamic_list.c optimised_orderings.c

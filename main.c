@@ -32,7 +32,7 @@ int main(int argc, char *argv[]){
         end_time = clock();
         printf("Computation Time: %d ms\n", (int)(end_time - start_time));
     }else{
-        print_mtx_reach_stats(matrix);
+        // print_mtx_reach_stats(matrix);
         start_time = clock();
         lsolve_by_matrix_parr(matrix, b_vector);
         end_time = clock();
